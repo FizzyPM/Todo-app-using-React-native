@@ -1,9 +1,10 @@
 import React from "react";
 import {View, Text, Button, ScrollView, Switch} from "react-native";
+import {Constants} from 'expo'
 
 let id = 0;
 const Todo = props => (
-	<View>
+	<View style={{ flexDirection: 'row', alignItems: 'center', flex:1 }}>
     <Switch value={props.todo.checked} onValueChange={props.onPressed} />
 		<Button onPress={props.onDelete} title="delete" />
 		<Text>{props.todo.text}</Text>
@@ -41,13 +42,13 @@ export default class App extends React.Component {
 	}
 	render() {
 		return (
-			<View>
+			<View  style={{ paddingTop: Constants.statusBarHeight, flex: 1 }}>
 				<Text>Total Todos: {this.state.todos.length} </Text>
 				<Text>
 					Unchecked Todos:{this.state.todos.filter(todo => todo.checked === false).length}
 				</Text>
 				<Button onPress={() => this.addTodo()} title="Add Todo" />
-				<ScrollView>
+				<ScrollView style={{ flex:1 }}>
 					{this.state.todos.map(todo => (
 						<Todo
 							todo={todo}
